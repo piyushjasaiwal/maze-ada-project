@@ -192,7 +192,10 @@ class Maze{
 
         window.requestAnimationFrame(() => {
             this.draw();
-        })
+        })  
+        //this function is for animation
+
+        // this.draw();
     }
 
     maze_setup(){
@@ -213,7 +216,7 @@ class Maze{
 }
 let newMaze ;
 document.getElementById("grid").onclick = function(){
-    newMaze = new Maze(550, 20, 20);
+    newMaze = new Maze(550, 60, 60);
     newMaze.setup();
     newMaze.maze_setup();
 }
