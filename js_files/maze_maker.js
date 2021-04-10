@@ -71,8 +71,8 @@ class Cell{
     }
 
     highlight(columns){
-        let x = (this.col_num * this.parent_size)/columns + 1
-        let y = (this.row_num * this.parent_size)/columns + 1
+        let x = (this.col_num * this.parent_size)/columns + 1;
+        let y = (this.row_num * this.parent_size)/columns + 1;
         ctx.fillStyle = "purple";
         ctx.fillRect(x, y, this.parent_size/ columns - 3, this.parentSize / columns - 3);
     }
@@ -107,7 +107,13 @@ class Cell{
         let y = (this.row_num * size) / r;
 
         ctx.strokeStyle = "white";
+        if(r == 0 && c == 0){
+            ctx.fillStyle = "green";
+        }else if(r == this.row_num - 1 && c == this.col_num - 1){
+            ctx.fillStyle = "red";
+        }
         // ctx.fillStyle = "green";
+
         ctx.lineWidth = 2;
 
         if(this.walls.top_wall){
@@ -216,7 +222,7 @@ class Maze{
 }
 let newMaze ;
 document.getElementById("grid").onclick = function(){
-    newMaze = new Maze(550, 60, 60);
+    newMaze = new Maze(550, 20, 20);
     newMaze.setup();
     newMaze.maze_setup();
 }
