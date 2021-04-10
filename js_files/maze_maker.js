@@ -107,11 +107,11 @@ class Cell{
         let y = (this.row_num * size) / r;
 
         ctx.strokeStyle = "white";
-        if(r == 0 && c == 0){
-            ctx.fillStyle = "green";
-        }else if(r == this.row_num - 1 && c == this.col_num - 1){
-            ctx.fillStyle = "red";
-        }
+        // if(x === 0 && y === 0){
+        //     ctx.fillStyle = "green";
+        // }else if(x === this.col_num - 1 && y === this.row_num - 1){
+        //     ctx.fillStyle = "red";
+        // }
         // ctx.fillStyle = "green";
 
         ctx.lineWidth = 2;
