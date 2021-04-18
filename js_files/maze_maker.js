@@ -102,11 +102,13 @@ class Cell{
 
     }
 
-    show(size, r ,c){
+    show(size, r ,c, fill){
         let x = (this.col_num * size) / c;
         let y = (this.row_num * size) / r;
 
         ctx.strokeStyle = "white";
+        ctx.fillStyle = fill;
+
         // if(x === 0 && y === 0){
         //     ctx.fillStyle = "green";
         // }else if(x === this.col_num - 1 && y === this.row_num - 1){
@@ -166,14 +168,22 @@ class Maze{
         maze.width = this.size;
         maze.height = this.size;
 
-        maze.style.background = "black";
+        // maze.style.background = "black";
 
         current.visited = true;
 
         for(let r = 0; r < this.rows;r++){
             for(let c = 0;c <= this.columns;c++){
                 let grid = this.grid;
-                grid[r][c].show(this.size, this.rows, this.columns);
+                // grid[r][c].show(this.size, this.rows, this.columns, );
+                if(r === 0 && c === 0){
+                    grid[r][c].show(this.size, this.rows, this.columns, "red");
+                }else if(r === this.rows - 1 && c === this.columns - 1){
+                    grid[r][c].show(this.size, this.rows, this.columns, "green");
+                }else{
+                    grid[r][c].show(this.size, this.rows, this.columns, "black");
+                }
+
             }
         }
         let next = current.checkNeighbours();
@@ -196,6 +206,8 @@ class Maze{
             return ;
         }
 
+        
+
         window.requestAnimationFrame(() => {
             this.draw();
         })  
@@ -203,6 +215,79 @@ class Maze{
 
         // this.draw();
     }
+
+    show_ans(visit){
+        for(let r = 0; r < this.rows;r++){
+            for(let c = 0;c <= this.columns;c++){
+                let grid = this.grid;
+                // grid[r][c].show(this.size, this.rows, this.columns);
+                if(r === 0 && c === 0){
+                    grid[r][c].show(this.size, this.rows, this.columns, "red");
+                }else if(r === this.rows - 1 && c === this.columns - 1){
+                    grid[r][c].show(this.size, this.rows, this.columns, "green");
+                }else if(visit[r][c]){
+                    grid[r][c].show(this.size, this.rows, this.columns, "blue");
+                }else{
+                    grid[r][c].show(this.size, this.rows, this.columns, "black");
+                }
+            }
+        }
+
+        
+    }
+
+    solve_back_track(cr, cc, visit){
+        console.log("inside the function");
+        if(cr < 0 || cc < 0 || cr >= this.rows || cc >= this.cols || visit[cr][cc]){
+            return ;
+        }
+
+        if(cr == this.rows - 1 && cc == this.columns - 1){
+            this.show_ans(visit);
+            setTimeout(() => {
+                console.log("program ended");
+            }, 600000);
+        }
+
+        visit[cr][cc] = true;
+        
+        if(!this.grid[cr][cc].walls.bottom_wall){
+            console.log("making call to down");
+            this.solve_back_track(cr+1,cc, visit);
+        }
+
+        if(!this.grid[cr][cc].walls.right_wall){
+            console.log("making call to right");
+            this.solve_back_track(cr,cc+1, visit);
+        }
+
+        if(!this.grid[cr][cc].walls.left_wall){
+            console.log("making call to left");
+            this.solve_back_track(cr,cc-1, visit);
+        }
+
+        if(!this.grid[cr][cc].walls.top_wall){
+            console.log("making call to up");
+            this.solve_back_track(cr-1,cc, visit);
+        }
+
+        visit[cr][cc] = false;
+    }
+
+    solve(){
+        console.log("solving");
+        var visit = [];
+        for(let i = 0;i<this.rows;i++){
+            var visit_temp = [];
+            for(let j = 0;j<this.columns;j++){
+                visit_temp.push(false);
+            }
+            visit.push(visit_temp);
+        }
+        console.log(visit);
+        this.solve_back_track(0,0,visit);
+    }
+
 
     maze_setup(){
         maze.width = this.size;
@@ -215,14 +300,21 @@ class Maze{
         for(let r = 0; r < this.rows;r++){
             for(let c = 0;c <= this.columns;c++){
                 let grid = this.grid;
-                grid[r][c].show(this.size, this.rows, this.columns);
+                // grid[r][c].show(this.size, this.rows, this.columns);
+                if(r === 0 && c === 0){
+                    grid[r][c].show(this.size, this.rows, this.columns, "red");
+                }else if(r === this.rows - 1 && c === this.columns - 1){
+                    grid[r][c].show(this.size, this.rows, this.columns, "green");
+                }else{
+                    grid[r][c].show(this.size, this.rows, this.columns, "black");
+                }
             }
         }
     }
 }
 let newMaze ;
 document.getElementById("grid").onclick = function(){
-    newMaze = new Maze(550, 20, 20);
+    newMaze = new Maze(550, 10, 10);
     newMaze.setup();
     newMaze.maze_setup();
 }
@@ -230,6 +322,14 @@ document.getElementById("grid").onclick = function(){
 document.getElementById("random").onclick = function(){
     newMaze.draw();
 }
+
+
+document.getElementById("solve").onclick = function(){
+    newMaze.solve();
+}
+
+
+
 
 // newMaze.maze_setup();
 // newMaze.draw();

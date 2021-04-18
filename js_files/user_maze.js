@@ -230,4 +230,3 @@ function myUp(){
 init();
 canvas.onmousedown= myDown;
 canvas.onmouseup= myUp;
-
