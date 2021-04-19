@@ -244,6 +244,7 @@ class Maze{
 
         if(cr == this.rows - 1 && cc == this.columns - 1){
             this.show_ans(visit);
+            // document.getElementById("message").innerHTML == "Path Found";
             setTimeout(() => {
                 console.log("program ended");
             }, 600000);
@@ -285,7 +286,42 @@ class Maze{
             visit.push(visit_temp);
         }
         console.log(visit);
+        // this.solve_BFS(visit);
         this.solve_back_track(0,0,visit);
+    }
+
+    solve_BFS(visit){
+        console.log("inside the bfs function");
+        let queue = [];
+        queue.push(new pair(0,0));
+        while(queue.length > 0){
+            console.log("inside the queue function");
+            let curr = queue.shift();
+            if(curr.r == this.rows - 1 && curr.c == this.columns - 1){
+                // show_message();
+                this.show_ans(visit);
+                
+                setTimeout(() => {
+                    console.log("program ended");
+                }, 600000);
+            }
+            visit[curr.r][curr.c] = true;
+            if(!this.grid[curr.r][curr.c].top_wall && curr.r-1 >= 0 && !visit[curr.r-1][curr.c]){
+                queue.push(new pair(curr.r-1, curr.c))
+            }
+
+            if(!this.grid[curr.r][curr.c].right_wall && curr.c+1 < this.columns && !visit[curr.r][curr.c+1]){
+                queue.push(new pair(curr.r, curr.c+1))
+            }
+
+            if(!this.grid[curr.r][curr.c].bottom_wall && curr.r+1 < this.columns && !visit[curr.r+1][curr.c]){
+                queue.push(new pair(curr.r+1, curr.c))
+            }
+
+            if(!this.grid[curr.r][curr.c].left_wall && curr.c-1 >= 0 && !visit[curr.r][curr.c-1]){
+                queue.push(new pair(curr.r, curr.c-1))
+            }
+        }
     }
 
 
@@ -312,9 +348,21 @@ class Maze{
         }
     }
 }
+
+class pair{
+    constructor(r,c){
+        this.r = r;
+        this.c = c;
+    }
+}
 let newMaze ;
+
+// function show_message(){
+//     console.log(document);
+//     document.getElementById("message").innerHTML == "Path Found";
+// }
 document.getElementById("grid").onclick = function(){
-    newMaze = new Maze(550, 10, 10);
+    newMaze = new Maze(550, 5, 5);
     newMaze.setup();
     newMaze.maze_setup();
 }
@@ -326,10 +374,5 @@ document.getElementById("random").onclick = function(){
 
 document.getElementById("solve").onclick = function(){
     newMaze.solve();
+    document.getElementById("message").style.display = block;
 }
-
-
-
-
-// newMaze.maze_setup();
-// newMaze.draw();

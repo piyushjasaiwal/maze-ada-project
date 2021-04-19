@@ -168,6 +168,7 @@ function reset(){   //a function to reset the grid
   tiles[0][0].state='s'; //start from 0,0
   tiles[tileColumnCount-1][tileRowCount-1].state='f'; //finishing at col-1,row-1
   output.innerHTML="";
+  location.reload();
 }
 
 function init(){    //to initialise everything
@@ -225,6 +226,11 @@ function myDown(e){
 
 function myUp(){
   canvas.onmousemove = null;
+}
+
+function createmaze(){
+  document.getElementById("rules").style.display = "block";
+  document.getElementById("myCanvas").style.display = "block";
 }
 
 init();

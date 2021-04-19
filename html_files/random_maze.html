@@ -5,21 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maze Solver</title>
+    <link rel="stylesheet" href="../cssFiles/randome_maze.css">
     <link rel="icon" href="../images/icon.png">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2&family=Yantramanav:wght@500;700;900&display=swap" rel="stylesheet">
+  
 </head>
 <body>
-    <h1>MAZE GENERATOR</h1>
+    <div class="container">
+        <h1>RANDOM MAZE GENERATOR AND SOLVER</h1>
+        <div></div>
+        <div id = "but">
+            <button id = "grid">Generate Grid</button>
+            <button id = "random">Generate Maze</button>
+            <button id = "solve">Solve</button>
+        </div>
+        <div></div>
+        <canvas class="maze"></canvas>
+        <h2 id="message">Path Found</h2>
+    </div>
     
-    <div></div>
-    <button id = "grid">Generate Grid</button>
-    <button id = "random">Generate Maze</button>
-    <button id = "solve">Solve</button>
-    <div></div>
-    <canvas class="maze"></canvas>
-
-
-
-    <!-- SCRIPTS FOR THE GENERATOR -->
+    <!-- SCRIPTS FOR THE GENERATOR and the solver -->
     <script src="../js_files/maze_maker.js"></script>
 </body>
 </html>

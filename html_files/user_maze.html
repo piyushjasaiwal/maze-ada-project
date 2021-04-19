@@ -3,13 +3,27 @@
   <head>
     <meta charset="utf-8">
     <title>Maze Solver</title>
+    <link rel="icon" href="../images/icon.png">
+    <link rel="stylesheet" href="../cssFiles/user_maze.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2&family=Yantramanav:wght@500;700;900&display=swap" rel="stylesheet">
   </head>
   <body>
-    <canvas id="myCanvas" width="1000" height="520"></canvas>
-    <br>
-    <button onclick="solveMaze()">Solve!</button>
-    <button onclick="reset()">Reset</button>
-    <p id="outcome"></p>
+    <div class="container">
+      <h1 class="mainheading">USER GENERATED MAZE SOLVER</h1>
+      <h2 id = "rules">Click on the boxes you want to make the obstacles.</h2>
+      
+      <br>
+      <div class="but">
+        <button onclick = "createmaze()">Create</button>
+        <button onclick="solveMaze()">Solve</button>
+        <button onclick="reset()">Reset</button>
+      </div>
+        <canvas id="myCanvas" width="1000" height="520"></canvas>
+      
+      
+      <h2 id="outcome"></h2>
+    </div>
     <script src="../js_files/user_maze.js"></script>
     </body>
 </html>

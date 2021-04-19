@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.main{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+}
+h1{
+    margin: 30px;
+    font-family: 'Roboto', sans-serif;
+}
+button{
+    height: 50px;
+    width: 300px;
+    margin: 20px;
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 10px;
+    font-family: 'Baloo Bhai 2', cursive;
+}
