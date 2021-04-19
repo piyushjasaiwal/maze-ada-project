@@ -181,7 +181,7 @@ class Maze{
                 }else if(r === this.rows - 1 && c === this.columns - 1){
                     grid[r][c].show(this.size, this.rows, this.columns, "green");
                 }else{
-                    grid[r][c].show(this.size, this.rows, this.columns, "black");
+                    grid[r][c].show(this.size, this.rows, this.columns, "grey");
                 }
 
             }
@@ -226,9 +226,9 @@ class Maze{
                 }else if(r === this.rows - 1 && c === this.columns - 1){
                     grid[r][c].show(this.size, this.rows, this.columns, "green");
                 }else if(visit[r][c]){
-                    grid[r][c].show(this.size, this.rows, this.columns, "blue");
-                }else{
                     grid[r][c].show(this.size, this.rows, this.columns, "black");
+                }else{
+                    grid[r][c].show(this.size, this.rows, this.columns, "grey");
                 }
             }
         }
@@ -329,7 +329,7 @@ class Maze{
         maze.width = this.size;
         maze.height = this.size;
 
-        maze.style.background = "black";
+        maze.style.background = "grey";
 
         current.visited = true;
 
@@ -342,7 +342,7 @@ class Maze{
                 }else if(r === this.rows - 1 && c === this.columns - 1){
                     grid[r][c].show(this.size, this.rows, this.columns, "green");
                 }else{
-                    grid[r][c].show(this.size, this.rows, this.columns, "black");
+                    grid[r][c].show(this.size, this.rows, this.columns, "grey");
                 }
             }
         }
