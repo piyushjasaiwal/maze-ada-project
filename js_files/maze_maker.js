@@ -362,7 +362,8 @@ let newMaze ;
 //     document.getElementById("message").innerHTML == "Path Found";
 // }
 document.getElementById("grid").onclick = function(){
-    newMaze = new Maze(550, 5, 5);
+    let p_r = prompt("Enter the number of rows and Columns");
+    newMaze = new Maze(550, p_r, p_r);
     newMaze.setup();
     newMaze.maze_setup();
 }
