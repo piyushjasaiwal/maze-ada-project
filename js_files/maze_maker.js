@@ -1,6 +1,6 @@
 let maze = document.querySelector(".maze");
 let ctx = maze.getContext("2d");
-
+let output = document.getElementById("message");
 let current;
 
 class Cell{
@@ -374,5 +374,4 @@ document.getElementById("random").onclick = function(){
 
 document.getElementById("solve").onclick = function(){
     newMaze.solve();
-    document.getElementById("message").style.display = block;
 }
