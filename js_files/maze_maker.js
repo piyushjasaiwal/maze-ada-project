@@ -106,7 +106,7 @@ class Cell{
         let x = (this.col_num * size) / c;
         let y = (this.row_num * size) / r;
 
-        ctx.strokeStyle = "white";
+        ctx.strokeStyle = "blue";
         ctx.fillStyle = fill;
 
         // if(x === 0 && y === 0){
